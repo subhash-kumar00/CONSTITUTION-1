@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ഇന്ത്യൻ ഭരണഘടന സെറ്റ് 1 - മോഡൽ എക്സാം</title>
+  <title>ഇന്ത്യൻ ഭരണഘടന സെറ്റ് 1 | മോഡൽ എക്സാം</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -17,12 +17,6 @@
       100% { transform: scale(1); opacity: 1; }
     }
     .animate-pop { animation: popZoom 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-    @keyframes countPulse {
-      0% { transform: scale(0.5); opacity: 0; }
-      50% { transform: scale(1.2); opacity: 1; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    .animate-count { animation: countPulse 0.9s infinite alternate; }
   </style>
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between select-none">
@@ -30,11 +24,11 @@
   <!-- Header -->
   <header class="bg-slate-800/95 backdrop-blur border-b border-slate-700 px-4 sm:px-6 py-3 flex items-center justify-between sticky top-0 z-50">
     <div class="flex items-center space-x-3">
-      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center font-black text-lg shadow-lg text-slate-950">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-black text-lg shadow-lg text-slate-950">
         PSC
       </div>
       <div>
-        <h1 class="font-bold text-sm sm:text-base text-amber-400 leading-tight">ഇന്ത്യൻ ഭരണഘടന - സെറ്റ് 1</h1>
+        <h1 class="font-bold text-sm sm:text-base text-cyan-400 leading-tight" id="headerExamTitle">ഇന്ത്യൻ ഭരണഘടന സെറ്റ് 1</h1>
         <p class="text-[11px] text-slate-400">Special Notes by Subhash Kumar | 25 ചോദ്യങ്ങൾ (25 മിനിറ്റ്)</p>
       </div>
     </div>
@@ -42,8 +36,8 @@
       <button id="fullscreenToggleBtn" class="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-semibold rounded-lg border border-slate-600 transition flex items-center space-x-1">
         <span>⛶ Fullscreen</span>
       </button>
-      <div id="userInfoHeader" class="hidden text-right">
-        <span id="displayUser" class="text-xs sm:text-sm font-semibold text-slate-200"></span>
+      <div class="text-right">
+        <span id="displayUser" class="text-xs sm:text-sm font-semibold text-cyan-300">പഠിതാവ്</span>
         <p class="text-[10px] text-emerald-400 font-mono">+1.00 / -0.33 Mark</p>
       </div>
     </div>
@@ -51,65 +45,29 @@
 
   <main class="flex-1 flex flex-col items-center justify-center p-3 sm:p-6 w-full max-w-4xl mx-auto">
     
-    <!-- Step 1: Registration Screen -->
-    <div id="loginCard" class="w-full max-w-md bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl">
-      <div class="text-center mb-6">
-        <span class="inline-block p-3 rounded-2xl bg-amber-500/10 text-amber-400 mb-2">
-          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
-        </span>
-        <h2 class="text-xl sm:text-2xl font-bold text-white">മോഡൽ എക്സാം</h2>
-        <p class="text-sm text-slate-400 mt-1">പേരും മൊബൈൽ നമ്പറും നൽകി പരീക്ഷ ആരംഭിക്കുക.</p>
-      </div>
-
-      <form id="loginForm" class="space-y-4">
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">പൂർണ്ണമായ പേര്</label>
-          <input type="text" id="candName" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 transition text-sm" placeholder="ഉദാ: സുഭാഷ് കുമാർ">
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">മൊബൈൽ നമ്പർ</label>
-          <div class="flex items-center space-x-2">
-            <span class="bg-slate-900 border border-slate-700 px-3 py-3 rounded-xl text-slate-300 font-mono text-xs select-none">🇮🇳 +91</span>
-            <input type="tel" id="candPhone" pattern="[0-9]{10}" required class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 transition font-mono tracking-wider text-sm" placeholder="10 അക്ക നമ്പർ">
-          </div>
-        </div>
-
-        <div class="bg-slate-900/70 p-3.5 rounded-xl border border-slate-700 text-xs space-y-1 text-slate-300">
-          <p class="font-bold text-amber-400">പരീക്ഷാ നിർദ്ദേശങ്ങൾ:</p>
-          <p class="text-amber-300 font-semibold">• സമയം: 25 മിനിറ്റ് | ആകെ ചോദ്യങ്ങൾ: 25</p>
-          <p>• ശരിയുത്തരം: +1 മാർക്ക് | തെറ്റായ ഉത്തരം: -0.33 മാർക്ക്</p>
-          <p class="text-emerald-400 font-semibold">• കുറഞ്ഞത് 8 മാർക്ക് നേടിയാൽ ഔദ്യോഗിക PDF ലഭ്യമാകും</p>
-        </div>
-
-        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 text-slate-950 font-bold rounded-xl transition transform active:scale-95 shadow-lg text-sm">
-          പരീക്ഷ ആരംഭിക്കുക
-        </button>
-      </form>
-
-      <div class="mt-4 text-center">
-        <button id="viewRankBtn" type="button" class="text-xs text-slate-400 hover:text-amber-400 underline">നിലവിലെ ലൈവ് റാങ്ക് ലിസ്റ്റ് കാണുക</button>
-      </div>
-    </div>
-
-    <!-- Step 1.5: Animated Motivation & Welcome Screen -->
-    <div id="motivationScreen" class="w-full max-w-lg bg-slate-800 border-2 border-amber-500/60 rounded-3xl p-8 sm:p-10 shadow-2xl text-center hidden space-y-6 animate-pop">
-      <div class="w-20 h-20 bg-gradient-to-tr from-amber-500 to-orange-600 rounded-full flex items-center justify-center mx-auto text-4xl shadow-xl animate-bounce">
+    <!-- Step 1: Motivation & Start Screen -->
+    <div id="motivationScreen" class="w-full max-w-lg bg-slate-800 border-2 border-cyan-500/60 rounded-3xl p-8 sm:p-10 shadow-2xl text-center space-y-6 animate-pop">
+      <div class="w-20 h-20 bg-gradient-to-tr from-cyan-500 to-blue-600 rounded-full flex items-center justify-center mx-auto text-4xl shadow-xl animate-bounce">
         ⚖️
       </div>
       <div>
-        <h2 id="motivateName" class="text-2xl sm:text-3xl font-black text-white"></h2>
-        <p class="text-amber-400 font-extrabold text-xs sm:text-sm mt-1 uppercase tracking-widest">ഭരണഘടനാ പരീക്ഷയിലേക്ക് സ്വാഗതം!</p>
+        <h2 id="motivateName" class="text-2xl sm:text-3xl font-black text-white">ഹലോ! ✨</h2>
+        <p class="text-cyan-400 font-extrabold text-xs sm:text-sm mt-1 uppercase tracking-widest" id="motivateSubTitle">ഇന്ത്യൻ ഭരണഘടന സെറ്റ് 1 പരീക്ഷയിലേക്ക് സ്വാഗതം!</p>
       </div>
 
       <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-700 text-slate-200 text-xs sm:text-sm leading-relaxed space-y-2 shadow-inner">
-        <p class="font-bold text-emerald-400 text-sm">"കൃത്യതയും വേഗതയുമാണ് വിജയത്തിന്റെ താക്കോൽ. ആത്മവിശ്വാസത്തോടെ മുന്നേറുക!"</p>
-        <p class="text-slate-300">ഓരോ ചോദ്യവും ശ്രദ്ധയോടെ വായിച്ച് ഉത്തരം നൽകുക. വിജയം നിങ്ങളോടൊപ്പമുണ്ട്!</p>
+        <p class="font-bold text-cyan-400 text-sm">"മൗലികാവകാശങ്ങളും ഭരണഘടനാ തത്വങ്ങളും കൃത്യതയോടെ വിശകലനം ചെയ്യുക."</p>
+        <p class="text-slate-300">കുറഞ്ഞത് <strong class="text-emerald-400">8 മാർക്ക്</strong> നേടിയാൽ മാത്രമേ ഔദ്യോഗിക നോട്ട്സ് PDF ഡൗൺലോഡ് ചെയ്യാൻ സാധിക്കൂ! ആത്മവിശ്വാസത്തോടെ പരീക്ഷ ആരംഭിക്കുക.</p>
       </div>
 
-      <div class="pt-2">
-        <span class="text-xs font-semibold text-slate-400 block mb-2 uppercase tracking-wide">പരീക്ഷ ആരംഭിക്കുന്നു...</span>
-        <div id="countdownNumber" class="text-6xl font-black text-amber-400 font-mono animate-count">3</div>
+      <div class="pt-2 space-y-3">
+        <button type="button" onclick="startExamDirectly()" class="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 text-slate-950 font-black rounded-2xl transition transform active:scale-95 shadow-xl text-base flex items-center justify-center space-x-2 cursor-pointer">
+          <span>പരീക്ഷ ആരംഭിക്കുക</span>
+          <span>🚀</span>
+        </button>
+        <button type="button" onclick="fetchLiveLeaderboard()" class="w-full py-2.5 bg-slate-700 hover:bg-slate-600 text-cyan-300 font-bold rounded-xl text-xs transition">
+          📊 ലൈവ് റാങ്ക് ലിസ്റ്റ് കാണുക
+        </button>
       </div>
     </div>
 
@@ -117,7 +75,7 @@
     <div id="quizScreen" class="w-full hidden flex-col space-y-4">
       <div class="bg-slate-800 border border-slate-700 rounded-xl p-3 sm:p-4 flex flex-wrap items-center justify-between gap-3 shadow-md">
         <div class="flex items-center space-x-2">
-          <span class="px-3 py-1 bg-amber-500/20 text-amber-300 font-bold rounded-lg text-xs sm:text-sm" id="questionBadge">ചോദ്യം 1 / 25</span>
+          <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 font-bold rounded-lg text-xs sm:text-sm" id="questionBadge">ചോദ്യം 1 / 25</span>
           <span class="text-[11px] text-slate-400" id="answeredCountTxt">പൂർത്തിയാക്കിയത്: 0/25</span>
         </div>
 
@@ -129,10 +87,10 @@
           <button id="fontIncrease" class="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded text-xs">A+</button>
         </div>
 
-        <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1 rounded-xl shadow-inner">
-          <svg class="w-4 h-4 text-amber-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3.5 py-1 rounded-xl shadow-inner">
+          <svg class="w-4 h-4 text-cyan-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           <span class="text-xs font-semibold text-slate-400">സമയം:</span>
-          <span id="examTimer" class="font-mono text-sm font-black text-amber-400">25:00</span>
+          <span id="examTimer" class="font-mono text-sm font-black text-cyan-400">25:00</span>
         </div>
 
         <button id="finishMidBtn" class="px-3 py-1 bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 text-xs font-semibold rounded-lg transition">
@@ -158,7 +116,7 @@
           <button id="prevBtn" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs sm:text-sm font-semibold rounded-xl transition disabled:opacity-40">‹ Previous</button>
           <div class="flex items-center space-x-2">
             <button id="skipBtn" class="px-3.5 py-2 bg-slate-700/50 hover:bg-slate-700 text-slate-300 text-xs sm:text-sm rounded-xl border border-slate-600 transition">Skip</button>
-            <button id="nextBtn" class="px-5 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs sm:text-sm rounded-xl transition transform active:scale-95 shadow-md">Next ›</button>
+            <button id="nextBtn" class="px-5 py-2 bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-bold text-xs sm:text-sm rounded-xl transition transform active:scale-95 shadow-md">Next ›</button>
           </div>
         </div>
       </div>
@@ -171,18 +129,31 @@
 
     <!-- Step 3: Result Screen & Interactive Reviews -->
     <div id="resultScreen" class="w-full hidden space-y-6">
-      <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl text-center">
-        <h2 class="text-2xl sm:text-3xl font-black text-amber-400 mb-1">പരീക്ഷാ ഫലം (Exam Result)</h2>
-        <p class="text-sm text-slate-400 mb-4" id="resultCandidateInfo"></p>
+      <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl text-center space-y-5">
+        
+        <div class="flex justify-end">
+          <button type="button" onclick="returnToHomeWithData()" class="px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black rounded-xl text-xs transition shadow flex items-center space-x-1.5">
+            <span>🏠</span>
+            <span>ഹോം പേജിലേക്ക് മടങ്ങുക (Save Result)</span>
+          </button>
+        </div>
+
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-black text-cyan-400 mb-1" id="resultHeaderTitle">പരീക്ഷാ ഫലം (Exam Result)</h2>
+          <p class="text-sm text-slate-400 mb-1" id="resultCandidateInfo"></p>
+          <span id="resultSubBadge" class="inline-block text-[11px] text-cyan-400 bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800">
+            ✓ ഫലം പ്രൊഫൈൽ ഹിസ്റ്ററിയിൽ രേഖപ്പെടുത്തിയിട്ടുണ്ട്
+          </span>
+        </div>
 
         <!-- Dynamic Motivation Badge -->
-        <div id="scoreMotivationBadge" class="max-w-xl mx-auto mb-6 p-4 rounded-2xl border text-sm leading-relaxed transition shadow-inner"></div>
+        <div id="scoreMotivationBadge" class="max-w-xl mx-auto p-4 rounded-2xl border text-sm leading-relaxed transition shadow-inner"></div>
 
         <!-- Clickable Score Cards -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto mb-6">
-          <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-750">
+        <div id="scoreCardsContainer" class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto">
+          <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700">
             <span class="text-[11px] text-slate-400 block font-semibold uppercase">നെറ്റ് സ്കോർ</span>
-            <span id="finalScore" class="text-2xl sm:text-3xl font-black text-amber-400 font-mono">0.00</span>
+            <span id="finalScore" class="text-2xl sm:text-3xl font-black text-cyan-400 font-mono">0.00</span>
             <span class="text-[10px] text-slate-500 block">25 ൽ</span>
           </div>
 
@@ -205,35 +176,40 @@
           </div>
         </div>
 
-        <div id="sheetStatus" class="text-xs text-amber-400 mb-4 animate-pulse">സ്കോർ ഗൂഗിൾ ഷീറ്റിലേക്ക് രേഖപ്പെടുത്തുന്നു...</div>
+        <div id="sheetStatus" class="text-xs text-cyan-400 animate-pulse">സ്കോർ ഗൂഗിൾ ഷീറ്റിലേക്ക് രേഖപ്പെടുത്തുന്നു...</div>
 
-        <!-- 8 Mark Lock Box -->
-        <div id="pdfLockNotice" class="hidden max-w-md mx-auto mb-5 p-3.5 bg-rose-950/40 border border-rose-800/80 rounded-xl text-xs text-rose-300">
-          ⚠️ <strong>ശ്രദ്ധിക്കുക:</strong> കുറഞ്ഞത് 8 മാർക്ക് നേടിയാൽ മാത്രമേ ഔദ്യോഗിക നോട്ടുകൾ PDF ഡൗൺലോഡ് ചെയ്യാൻ സാധിക്കൂ. നിങ്ങളുടെ നിലവിലെ സ്കോർ 8-ൽ താഴെയാണ്.
+        <!-- 8 Mark Cut-off Warning Box -->
+        <div id="pdfLockNotice" class="hidden max-w-md mx-auto p-3.5 bg-rose-950/40 border border-rose-800/80 rounded-xl text-xs text-rose-300">
+          ⚠️ <strong>ശ്രദ്ധിക്കുക:</strong> ഔദ്യോഗിക നോട്ടുകൾ PDF ഡൗൺലോഡ് ചെയ്യാൻ കുറഞ്ഞത് <strong>8 മാർക്ക്</strong> നേടിയിരിക്കണം. നിങ്ങളുടെ നിലവിലെ സ്കോർ 8-ൽ താഴെയാണ്.
         </div>
 
-        <div class="flex flex-wrap items-center justify-center gap-3">
-          <button id="downloadOriginalNoteBtn" class="hidden px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 text-slate-950 font-black rounded-xl text-sm transition shadow-lg flex items-center space-x-2">
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+          <button type="button" id="downloadOriginalNoteBtn" onclick="openFeedbackModal()" class="hidden px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 text-slate-950 font-black rounded-xl text-sm transition shadow-lg flex items-center space-x-2 cursor-pointer">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path></svg>
             <span>ഔദ്യോഗിക നോട്ടുകൾ PDF ഡൗൺലോഡ് ചെയ്യുക 📥</span>
           </button>
 
-          <button id="downloadPdfBtn" class="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-sm transition shadow-lg flex items-center space-x-2">
+          <button type="button" id="downloadPdfBtn" class="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-sm transition shadow-lg flex items-center space-x-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
             <span>സ്കോർകാർഡ് PDF</span>
           </button>
 
-          <button id="showLeaderboardBtn" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-xl text-sm transition shadow-lg">
-            ലൈവ് റാങ്ക് ലിസ്റ്റ് കാണുക
+          <button type="button" onclick="fetchLiveLeaderboard()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-sm transition shadow-lg">
+            📊 ലൈവ് റാങ്ക് ലിസ്റ്റ് കാണുക
+          </button>
+
+          <button type="button" onclick="returnToHomeWithData()" class="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-xl text-sm transition flex items-center space-x-1.5">
+            <span>🏠</span>
+            <span>ഹോം പോർട്ടൽ</span>
           </button>
         </div>
       </div>
 
       <!-- Filtered Question Review Area -->
-      <div id="filterReviewArea" class="hidden bg-slate-800 border-2 border-amber-500/50 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-4">
+      <div id="filterReviewArea" class="hidden bg-slate-800 border-2 border-cyan-500/50 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-4">
         <div class="flex items-center justify-between border-b border-slate-700 pb-3">
           <h3 id="filterReviewTitle" class="text-lg font-bold text-white"></h3>
-          <button id="closeFilterReviewBtn" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg text-white font-semibold">ക്ലോസ് ചെയ്യുക ✕</button>
+          <button type="button" id="closeFilterReviewBtn" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg text-white font-semibold">ക്ലോസ് ചെയ്യുക ✕</button>
         </div>
         <div id="filterReviewList" class="space-y-4 max-h-[60vh] overflow-y-auto custom-scroll pr-1"></div>
       </div>
@@ -241,23 +217,10 @@
       <!-- Permanent Solutions Area at bottom -->
       <div id="pdfExportWrapper" class="bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl">
         <div class="border-b border-slate-700 pb-4 mb-6">
-          <h3 class="text-xl font-bold text-amber-400">ഇന്ത്യൻ ഭരണഘടന (സെറ്റ് 1) - ഉത്തര സൂചിക</h3>
-          <p class="text-xs text-slate-400 mt-1" id="pdfReportCandidateSubheader">പരീക്ഷാർത്ഥി വിവരങ്ങൾ</p>
+          <h3 class="text-xl font-bold text-cyan-400" id="pdfExportExamTitle">ഇന്ത്യൻ ഭരണഘടന സെറ്റ് 1 - ഉത്തര സൂചിക</h3>
+          <p class="text-xs text-slate-400 mt-1" id="pdfReportCandidateSubheader">വിദ്യാർത്ഥി വിവരങ്ങൾ</p>
         </div>
         <div id="solutionsContainer" class="space-y-6"></div>
-      </div>
-    </div>
-
-    <!-- Feedback Modal -->
-    <div id="feedbackModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-      <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-sm w-full p-6 shadow-2xl text-center space-y-4">
-        <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto text-2xl">🌟</div>
-        <h3 class="text-lg font-bold text-white">നിങ്ങൾക്ക് ഈ ക്വിസ് ഇഷ്ടമായോ?</h3>
-        <p class="text-xs text-slate-400">പ്രതികരണം നൽകിയ ശേഷം ഔദ്യോഗിക നോട്ട്സ് PDF ഡൗൺലോഡ് ചെയ്യാം.</p>
-        <div class="flex items-center justify-center space-x-4 pt-2">
-          <button id="likeBtn" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-sm transition">👍 Like</button>
-          <button id="dislikeBtn" class="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-xl text-sm transition">👎 Dislike</button>
-        </div>
       </div>
     </div>
 
@@ -266,10 +229,10 @@
       <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-xl w-full p-6 shadow-2xl flex flex-col max-h-[85vh]">
         <div class="flex items-center justify-between border-b border-slate-700 pb-4 mb-4">
           <div>
-            <h3 class="text-xl font-bold text-amber-400">ലൈവ് റാങ്ക് ലിസ്റ്റ് (Google Sheet)</h3>
+            <h3 class="text-xl font-bold text-cyan-400">ലൈവ് റാങ്ക് ലിസ്റ്റ് (Google Sheet)</h3>
             <p class="text-xs text-slate-400">ആദ്യ ശ്രമത്തിലെ സ്കോർ അടിസ്ഥാനമാക്കി ക്രമീകരിച്ചത്</p>
           </div>
-          <button id="closeLeaderboardBtn" class="text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
+          <button type="button" onclick="closeLeaderboard()" class="text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
         </div>
         <div id="leaderboardLoading" class="py-10 text-center text-sm text-slate-400">ഗൂഗിൾ ഷീറ്റിൽ നിന്നും റാങ്ക് ലിസ്റ്റ് ശേഖരിക്കുന്നു...</div>
         <div class="flex-1 overflow-y-auto custom-scroll pr-1 hidden" id="leaderboardTableWrapper">
@@ -286,7 +249,20 @@
           </table>
         </div>
         <div class="pt-4 border-t border-slate-700 mt-4 text-center">
-          <button id="closeLeaderboardBtn2" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-xs font-semibold text-white">ക്ലോസ് ചെയ്യുക</button>
+          <button type="button" onclick="closeLeaderboard()" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-xs font-semibold text-white">ക്ലോസ് ചെയ്യുക</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+      <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-sm w-full p-6 shadow-2xl text-center space-y-4">
+        <div class="w-12 h-12 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center mx-auto text-2xl">🌟</div>
+        <h3 class="text-lg font-bold text-white">നിങ്ങൾക്ക് ഈ ക്വിസ് ഇഷ്ടമായോ?</h3>
+        <p class="text-xs text-slate-400">പ്രതികരണം നൽകിയ ശേഷം ഔദ്യോഗിക നോട്ട്സ് PDF ഡൗൺലോഡ് ചെയ്യാം.</p>
+        <div class="flex items-center justify-center space-x-4 pt-2">
+          <button type="button" onclick="recordFeedbackAndOpenDownload('Like')" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-sm transition">👍 Like</button>
+          <button type="button" onclick="recordFeedbackAndOpenDownload('Dislike')" class="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-xl text-sm transition">👎 Dislike</button>
         </div>
       </div>
     </div>
@@ -294,174 +270,172 @@
   </main>
 
   <footer class="text-center py-3 text-[11px] text-slate-500 border-t border-slate-800">
-    ഇന്ത്യൻ ഭരണഘടന: മൗലികാവകാശങ്ങൾ, കടമകൾ & പാർലമെന്റ് - സെറ്റ് 1 | Special Notes by Subhash Kumar
+    ഇന്ത്യൻ ഭരണഘടന: മൗലികാവകാശങ്ങൾ, കടമകൾ & പാർലമെന്റ് - സെറ്റ് 1 | Special Notes by Subhash Kumar[span_1](start_span)[span_1](end_span)
   </footer>
 
   <script>
-    // =========================================================================
-    // ⚠️ 1. കോൺഫിഗറേഷൻ വിവരങ്ങൾ:
-    // =========================================================================
-    const GOOGLE_SHEET_WEBAPP_URL ="https://script.google.com/macros/s/AKfycbztE9bExjlH5a9Y_O8pU9CzVZy5zl-wzycDISurGzxqwuWB71Nxquzpg00Ocf2QR9Zb/exec";
-    const QUIZ_SHEET_NAME = "Constitution_Set1";
-    const ORIGINAL_PDF_URL = "https://drive.google.com/file/d/1Yvigt5hxr29q0Fq5JPQVquof3modtqEs/view?usp=sharing";
+    let GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbztE9bExjlH5a9Y_O8pU9CzVZy5zl-wzycDISurGzxqwuWB71Nxquzpg00Ocf2QR9Zb/exec";
+    const QUIZ_SHEET_NAME = "ഇന്ത്യൻ ഭരണഘടന സെറ്റ് 1";
+    let ORIGINAL_PDF_URL = "https://drive.google.com/file/d/1Yvigt5hxr29q0Fq5JPQVquof3modtqEs/view?usp=sharing";
+    let examTitle = "ഇന്ത്യൻ ഭരണഘടന സെറ്റ് 1";
 
-    // 25 Questions strictly from CONSTITUTION 1.pdf
     const questionsData = [
       { 
         q: "ഇന്ത്യൻ ഭരണഘടനയുടെ ഏത് ഭാഗത്താണ് മൗലിക അവകാശങ്ങളെക്കുറിച്ച് പ്രതിപാദിച്ചിരിക്കുന്നത്?", 
         options: ["ഭാഗം II", "ഭാഗം III", "ഭാഗം IV", "ഭാഗം IV-A"], 
         ans: 1, 
-        exp: "ഇന്ത്യൻ ഭരണഘടനയുടെ മൂന്നാം ഭാഗത്തിൽ (Part III, ആർട്ടിക്കിൾ 12 മുതൽ 35 വരെ) ആണ് മൗലിക അവകാശങ്ങളെക്കുറിച്ച് (Fundamental Rights) പ്രതിപാദിച്ചിരിക്കുന്നത്." 
+        exp: "ഇന്ത്യൻ ഭരണഘടനയുടെ മൂന്നാം ഭാഗത്തിൽ (Part III, ആർട്ടിക്കിൾ 12 മുതൽ 35 വരെ) ആണ് മൗലിക അവകാശങ്ങളെക്കുറിച്ച് (Fundamental Rights) പ്രതിപാദിച്ചിരിക്കുന്നത്[span_2](start_span)[span_2](end_span)." 
       },
       { 
         q: "ഇന്ത്യൻ ഭരണഘടനയിലേക്ക് മൗലിക കടമകൾ (Fundamental Duties) ഏത് ഭേദഗതിയിലൂടെയാണ് കൂട്ടിച്ചേർത്തത്?", 
         options: ["42 ഭേദഗതി", "44 ഭേദഗതി", "86 ഭേദഗതി", "73 ഭേദഗതി"], 
         ans: 0, 
-        exp: "സ്വരൺ സിംഗ് കമ്മറ്റി റിപ്പോർട്ടിൻ്റെ അടിസ്ഥാനത്തിൽ 1976-ലെ 42 ഭരണഘടനാ ഭേദഗതിയിലൂടെയാണ് നാലാം ഭാഗത്ത് (Part IV-A, ആർട്ടിക്കിൾ 51A) മൗലിക കടമകൾ ഉൾപ്പെടുത്തിയത്." 
+        exp: "സ്വരൺ സിംഗ് കമ്മറ്റി റിപ്പോർട്ടിൻ്റെ അടിസ്ഥാനത്തിൽ 1976-ലെ 42 ഭരണഘടനാ ഭേദഗതിയിലൂടെയാണ് നാലാം ഭാഗത്ത് (Part IV-A, ആർട്ടിക്കിൾ 51A) മൗലിക കടമകൾ ഉൾപ്പെടുത്തിയത്[span_3](start_span)[span_3](end_span)." 
       },
       { 
         q: "മൗലിക അവകാശങ്ങളെക്കുറിച്ചുള്ള താഴെ പറയുന്ന പ്രസ്താവനകളിൽ ശരിയായവ ഏവ?\n1. മൗലിക അവകാശങ്ങൾ ലംഘിക്കപ്പെട്ടാൽ പൗരന്മാർക്ക് സുപ്രീം കോടതിയെയും ഹൈക്കോടതിയെയും സമീപിക്കാം.\n2. ഇന്ത്യൻ പൗരന്മാർക്ക് മാത്രം ലഭ്യമായ ചില മൗലിക അവകാശങ്ങൾ വിദേശികൾക്ക് ബാധകമല്ല.\n3. രാജ്യത്തിന്റെ സുരക്ഷ മുൻനിർത്തി മൗലിക അവകാശങ്ങൾക്ക്മേൽ ന്യായമായ നിയന്ത്രണങ്ങൾ ഏർപ്പെടുത്താം.", 
         options: ["1, 2 ശരിയാണ്", "2, 3 ശരിയാണ്", "1, 3 ശരിയാണ്", "1, 2, 3 പ്രസ്താവനകളും ശരിയാണ്"], 
         ans: 3, 
-        exp: "മൗലിക അവകാശങ്ങളുടെ നീതിന്യായ സംരക്ഷണം, പൗരന്മാർക്ക് മാത്രമുള്ള അവകാശങ്ങൾ, ന്യായമായ നിയന്ത്രണങ്ങൾ എന്നിവ സംബന്ധിച്ച മൂന്ന് പ്രസ്താവനകളും ശരിയാണ്." 
+        exp: "മൗലിക അവകാശങ്ങളുടെ നീതിന്യായ സംരക്ഷണം, പൗരന്മാർക്ക് മാത്രമുള്ള അവകാശങ്ങൾ, ന്യായമായ നിയന്ത്രണങ്ങൾ എന്നിവ സംബന്ധിച്ച മൂന്ന് പ്രസ്താവനകളും ശരിയാണ്[span_4](start_span)[span_4](end_span)." 
       },
       { 
         q: "പാർലമെന്റിന്റെ ഉപരിസഭയായ രാജ്യസഭയുടെ അധ്യക്ഷനായി എക്സ്-ഓഫീഷ്യോ പ്രവർത്തിക്കുന്നത് ആര്?", 
         options: ["രാജ്യസഭാ ഡെപ്യൂട്ടി ചെയർമാൻ", "ഉപരാഷ്ട്രപതി", "പ്രധാനമന്ത്രി", "ലോക്സഭാ സ്പീക്കർ"], 
         ans: 1, 
-        exp: "ഇന്ത്യയുടെ ഉപരാഷ്ട്രപതിയാണ് ഔദ്യോഗികമായി രാജ്യസഭയുടെ (Rajya Sabha) അധ്യക്ഷൻ (Chairman) ആയി പ്രവർത്തിക്കുന്നത്." 
+        exp: "ഇന്ത്യയുടെ ഉപരാഷ്ട്രപതിയാണ് ഔദ്യോഗികമായി രാജ്യസഭയുടെ (Rajya Sabha) അധ്യക്ഷൻ (Chairman) ആയി പ്രവർത്തിക്കുന്നത്[span_5](start_span)[span_5](end_span)." 
       },
       { 
         q: "ഇന്ത്യൻ പാർലമെൻ്റിൻ്റെ ഘടനയെയും നിയമ നിർമ്മാണ പ്രക്രിയയെയും കുറിച്ച് തെറ്റായ പ്രസ്താവന ഏത്?\n1. ഇന്ത്യൻ പാർലമെൻ്റിൽ ലോക്‌സഭ, രാജ്യസഭ, രാഷ്ട്രപതി എന്നിവർ ഉൾപ്പെടുന്നു.\n2. രാജ്യസഭയിൽ ആകെ 552 സ്ഥിര അംഗങ്ങൾ പൂർണ്ണമായി നേരിട്ട് തിരഞ്ഞെടുക്കപ്പെടുന്നു.\n3. മണിബില്ലുകൾ രാജ്യസഭയിൽ മാത്രമേ ആദ്യമായി അവതരിപ്പിക്കാൻ പാടുള്ളൂ.\n4. ലോക്സഭയുടെ കാലാവധി സാധാരണയായി 5 വർഷമാണ്.", 
         options: ["2, 3 എന്നിവ തെറ്റാണ്", "1 മാത്രം തെറ്റാണ്", "1, 4 എന്നിവ തെറ്റാണ്", "എല്ലാം തെറ്റാണ്"], 
         ans: 0, 
-        exp: "2 (രാജ്യസഭയിലേക്ക് നാമനിർദ്ദേശം ചെയ്യപ്പെട്ടവരുണ്ട്, പരമാവധി 250 ആണ് ), 3 (മണിബില്ലുകൾ ലോക്സഭയിലാണ് ആദ്യം അവതരിപ്പിക്കേണ്ടത്) എന്നീ പ്രസ്താവനകൾ തെറ്റാണ്." 
+        exp: "2 (രാജ്യസഭയിലേക്ക് നാമനിർദ്ദേശം ചെയ്യപ്പെട്ടവരുണ്ട്, പരമാവധി 250 ആണ് ), 3 (മണിബില്ലുകൾ ലോക്സഭയിലാണ് ആദ്യം അവതരിപ്പിക്കേണ്ടത്) എന്നീ പ്രസ്താവനകൾ തെറ്റാണ്[span_6](start_span)[span_6](end_span)." 
       },
       { 
         q: "ഇന്ത്യൻ പാർലമെന്റിന്റെ ഇരുസഭകളുടെയും സംയുക്ത സമ്മേളനത്തിന് (Joint Sitting) അധ്യക്ഷത വഹിക്കുന്നത് ആര്?", 
         options: ["രാജ്യസഭാ ഉപാധ്യക്ഷൻ", "ഇന്ത്യയുടെ രാഷ്ട്രപതി", "ലോക്സഭാ സ്പീക്കർ", "കേന്ദ്ര നിയമകാര്യ മന്ത്രി"], 
         ans: 2, 
-        exp: "ആർട്ടിക്കിൾ 108 പ്രകാരം രാഷ്ട്രപതി വിളിച്ചുകൂട്ടുന്ന സംയുക്ത സമ്മേളനത്തിന് അധ്യക്ഷത വഹിക്കുന്നത് ലോക്‌സഭാ സ്പീക്കർ (Speaker of Lok Sabha) ആണ്." 
+        exp: "ആർട്ടിക്കിൾ 108 പ്രകാരം രാഷ്ട്രപതി വിളിച്ചുകൂട്ടുന്ന സംയുക്ത സമ്മേളനത്തിന് അധ്യക്ഷത വഹിക്കുന്നത് ലോക്‌സഭാ സ്പീക്കർ (Speaker of Lok Sabha) ആണ്[span_7](start_span)[span_7](end_span)." 
       },
       { 
         q: "മൗലിക അവകാശങ്ങൾ ലംഘിക്കപ്പെട്ടാൽ പൗരന്മാർക്ക് നേരിട്ട് സുപ്രീം കോടതിയെ സമീപിക്കാൻ അധികാരം നൽകുന്ന ആർട്ടിക്കിൾ ഏത്?", 
         options: ["ആർട്ടിക്കിൾ 14", "ആർട്ടിക്കിൾ 19", "ആർട്ടിക്കിൾ 21", "ആർട്ടിക്കിൾ 32"], 
         ans: 3, 
-        exp: "ഡോ. ബി.ആർ. അംബേദ്‌കർ 'ഭരണഘടനയുടെ ആത്മാവും ഹൃദയവും' എന്ന് വിശേഷിപ്പിച്ച ആർട്ടിക്കിൾ 32 ആണ് റിട്ടുകൾ പുറപ്പെടുവിക്കാൻ സുപ്രീം കോടതിക്ക് അധികാരം നൽകുന്നത്." 
+        exp: "ഡോ. ബി.ആർ. അംബേദ്‌കർ 'ഭരണഘടനയുടെ ആത്മാവും ഹൃദയവും' എന്ന് വിശേഷിപ്പിച്ച ആർട്ടിക്കിൾ 32 ആണ് റിട്ടുകൾ പുറപ്പെടുവിക്കാൻ സുപ്രീം കോടതിക്ക് അധികാരം നൽകുന്നത്[span_8](start_span)[span_8](end_span)." 
       },
       { 
         q: "മൗലിക കടമകളുമായി ബന്ധപ്പെട്ട പ്രസ്താവനകളിൽ ശരിയായവ ഏവ?\n1. സ്വരൺ സിംഗ് കമ്മറ്റി ശുപാർശപ്രകാരമാണ് മൗലിക കടമകൾ ഉൾപ്പെടുത്തിയത്.\n2. തുടക്കത്തിൽ 10 മൗലിക കടമകൾ ഉണ്ടായിരുന്നെങ്കിലും പിന്നീട് 86 ഭേദഗതിയിലൂടെ ഒന്നുകൂടി ചേർത്ത് ആകെ 11 ആയി.\n3. മൗലിക കടമകൾ ഇന്ത്യൻ ഭരണഘടനയുടെ നാൽ A (4A) ഭാഗത്തിലാണ് ഉൾപ്പെടുത്തിയിരിക്കുന്നത്.", 
         options: ["1, 2 ശരിയാണ്", "2, 3 ശരിയാണ്", "1, 3 ശരിയാണ്", "1, 2, 3 പ്രസ്താവനകളും ശരിയാണ്"], 
         ans: 3, 
-        exp: "സ്വരൺ സിംഗ് കമ്മറ്റി, 10+1 കടമകൾ, ഭാഗം IV-A എന്നിവയെക്കുറിച്ചുള്ള മൂന്ന് പ്രസ്താവനകളും തികച്ചും ശരിയാണ്." 
+        exp: "സ്വരൺ സിംഗ് കമ്മറ്റി, 10+1 കടമകൾ, ഭാഗം IV-A എന്നിവയെക്കുറിച്ചുള്ള മൂന്ന് പ്രസ്താവനകളും തികച്ചും ശരിയാണ്[span_9](start_span)[span_9](end_span)." 
       },
       { 
         q: "ഇന്ത്യൻ പാർലമെന്റിന്റെ താഴത്തെ സഭയായ ലോക്സഭയിലെ അംഗങ്ങളുടെ പരമാവധി അംഗസംഖ്യ എത്രയായി നിശ്ചയിച്ചിരിക്കുന്നു?", 
         options: ["250", "545", "550", "543"], 
         ans: 2, 
-        exp: "ഭരണഘടന പ്രകാരം ലോക്‌സഭയുടെ പരമാവധി അംഗസംഖ്യ 550 ആണ് (നിലവിൽ തിരഞ്ഞെടുക്കപ്പെട്ട 543 അംഗങ്ങളാണുള്ളത് )." 
+        exp: "ഭരണഘടന പ്രകാരം ലോക്‌സഭയുടെ പരമാവധി അംഗസംഖ്യ 550 ആണ് (നിലവിൽ തിരഞ്ഞെടുക്കപ്പെട്ട 543 അംഗങ്ങളാണുള്ളത് )[span_10](start_span)[span_10](end_span)." 
       },
       { 
         q: "ലോക്സഭയെയും രാജ്യസഭയെയും സംബന്ധിച്ച താഴെ പറയുന്ന പ്രസ്താവനകളിൽ തെറ്റായവ ഏവ?\n1. ലോക്സഭയിലെ അംഗമാകാൻ കുറഞ്ഞത് 30 വയസ്സ് പ്രായം വേണം.\n2. രാജ്യസഭയിലെ അംഗമാകാൻ കുറഞ്ഞത് 25 വയസ്സ് പ്രായം വേണം.\n3. ലോക്സഭ പിരിച്ചുവിടാൻ കഴിയുന്ന ഒരു സ്ഥിരമല്ലാത്ത സഭയാണ്.", 
         options: ["1, 2 എന്നിവ തെറ്റാണ്", "2, 3 എന്നിവ തെറ്റാണ്", "1 മാത്രം തെറ്റാണ്", "എല്ലാം തെറ്റാണ്"], 
         ans: 0, 
-        exp: "1 (ലോക്സഭയിലേക്ക് 25 വയസ്സും), 2 (രാജ്യസഭയിലേക്ക് 30 വയസ്സുമാണ് വേണ്ടത് - ഇവിടെ പ്രായപരിധി പരസ്പരം മാറി നൽകിയിരിക്കുന്നു), അതിനാൽ 1, 2 തെറ്റാണ്." 
+        exp: "1 (ലോക്സഭയിലേക്ക് 25 വയസ്സും), 2 (രാജ്യസഭയിലേക്ക് 30 വയസ്സുമാണ് വേണ്ടത് - ഇവിടെ പ്രായപരിധി പരസ്പരം മാറി നൽകിയിരിക്കുന്നു), അതിനാൽ 1, 2 തെറ്റാണ്[span_11](start_span)[span_11](end_span)." 
       },
       { 
         q: "ആർട്ടിക്കിൾ 21-A പ്രകാരം സൗജന്യവും നിർബന്ധിതവുമായ വിദ്യാഭ്യാസം മൗലിക അവകാശമായി ഉൾപ്പെടുത്തിയത് ഏത് ഭേദഗതിയിലൂടെയാണ്?", 
         options: ["44 ഭേദഗതി", "86 ഭേദഗതി", "91 ഭേദഗതി", "103 ഭേദഗതി"], 
         ans: 1, 
-        exp: "2002-ലെ 86 ഭരണഘടനാ ഭേദഗതിയിലൂടെയാണ് 6 നും 14 വയസ്സിനും ഇടയിലുള്ള കുട്ടികൾക്ക് വിദ്യാഭ്യാസം മൗലിക അവകാശമാക്കിയത് (Right to Education)." 
+        exp: "2002-ലെ 86 ഭരണഘടനാ ഭേദഗതിയിലൂടെയാണ് 6 നും 14 വയസ്സിനും ഇടയിലുള്ള കുട്ടികൾക്ക് വിദ്യാഭ്യാസം മൗലിക അവകാശമാക്കിയത് (Right to Education)[span_12](start_span)[span_12](end_span)." 
       },
       { 
         q: "ഇന്ത്യൻ ഗവൺമെൻ്റിൻ്റെ പ്രധാന ഘടകങ്ങളിൽ (Organs of Government) താഴെ പറയുന്നവയിൽ ഉൾപ്പെടാത്തത് ഏതാണ്?", 
         options: ["ജുഡീഷ്യറി", "ലെജിസ്ലേച്ചർ", "എക്സിക്യൂട്ടീവ്", "പ്രസ്സ് കൗൺസിൽ"], 
         ans: 3, 
-        exp: "ലെജിസ്ലേച്ചർ (നിയമനിർമ്മാണ സഭ), എക്സിക്യൂട്ടീവ് (കാര്യനിർവ്വഹണ വിഭാഗം), ജുഡീഷ്യറി (നീതിന്യായം) എന്നിവയാണ് സർക്കാരിന്റെ മൂന്ന് അടിസ്ഥാന ഘടകങ്ങൾ." 
+        exp: "ലെജിസ്ലേച്ചർ (നിയമനിർമ്മാണ സഭ), എക്സിക്യൂട്ടീവ് (കാര്യനിർവ്വഹണ വിഭാഗം), ജുഡീഷ്യറി (നീതിന്യായം) എന്നിവയാണ് സർക്കാരിന്റെ മൂന്ന് അടിസ്ഥാന ഘടകങ്ങൾ[span_13](start_span)[span_13](end_span)." 
       },
       { 
         q: "ഇന്ത്യൻ ഭരണഘടനയുടെ ആമുഖം (Preamble) സംബന്ധിച്ച പ്രസ്താവനകളിൽ ശരിയായവ ഏവ?\n1. ജവഹർലാൽ നെഹ്റു അവതരിപ്പിച്ച 'ലക്ഷ്യപ്രമേയം' (Objectives Resolution) ആണ് പിന്നീട് ആമുഖമായി മാറിയത്.\n2. ആമുഖം ഇതുവരെ ഭരണഘടനയിൽ ഒരിക്കൽ പോലും ഭേദഗതി ചെയ്തിട്ടില്ല.\n3. ആമുഖം ഭരണഘടനയുടെ വ്യാഖ്യാനത്തിന് സഹായിക്കുന്ന ഒരു പ്രധാന താക്കോലായി സുപ്രീം കോടതി വിശേഷിപ്പിച്ചിട്ടുണ്ട്.", 
         options: ["1, 3 ശരിയാണ്", "1, 2 ശരിയാണ്", "2, 3 ശരിയാണ്", "1, 2, 3 പ്രസ്താവനകളും ശരിയാണ്"], 
         ans: 0, 
-        exp: "രണ്ടാമത്തെ പ്രസ്താവന തെറ്റാണ്. ആമുഖം 1976-ൽ 42 ഭേദഗതിയിലൂടെ ഒരിക്കൽ ഭേദഗതി ചെയ്തിട്ടുണ്ട്. 1, 3 പ്രസ്താവനകൾ ശരിയാണ്." 
+        exp: "രണ്ടാമത്തെ പ്രസ്താവന തെറ്റാണ്. ആമുഖം 1976-ൽ 42 ഭേദഗതിയിലൂടെ ഒരിക്കൽ ഭേദഗതി ചെയ്തിട്ടുണ്ട്. 1, 3 പ്രസ്താവനകൾ ശരിയാണ്[span_14](start_span)[span_14](end_span)." 
       },
       { 
         q: "മൗലിക അവകാശങ്ങളിൽ നിന്നും 'സ്വത്ത് അവകാശം' (Right to Property) നീക്കം ചെയ്ത ഭരണഘടനാ ഭേദഗതി ഏതാണ്?", 
         options: ["42 ഭേദഗതി", "44 ഭേദഗതി", "52 ഭേദഗതി", "61 ഭേദഗതി"], 
         ans: 1, 
-        exp: "1978-ലെ 44 ഭരണഘടനാ ഭേദഗതിയിലൂടെ സ്വത്തവകാശം മൗലിക അവകാശത്തിൽ നിന്നും ഒഴിവാക്കി ആർട്ടിക്കിൾ 300A പ്രകാരം നിയമപരമായ അവകാശമാക്കി മാറ്റി." 
+        exp: "1978-ലെ 44 ഭരണഘടനാ ഭേദഗതിയിലൂടെ സ്വത്തവകാശം മൗലിക അവകാശത്തിൽ നിന്നും ഒഴിവാക്കി ആർട്ടിക്കിൾ 300A പ്രകാരം നിയമപരമായ അവകാശമാക്കി മാറ്റി[span_15](start_span)[span_15](end_span)." 
       },
       { 
         q: "പാർലമെന്റിൻ്റെ സമ്മേളനങ്ങളും നടപടിക്രമങ്ങളും കുറിച്ച് തെറ്റായ പ്രസ്താവനകൾ ഏവ?\n1. പാർലമെന്റിന്റെ രണ്ട് സമ്മേളനങ്ങൾ തമ്മിലുള്ള ഇടവേള 9 മാസത്തിൽ കൂടുതൽ ആകാൻ പാടില്ല.\n2. പാർലമെന്റിൻ്റെ ഒരു യോഗം ക്വോറം (Quorum) തികയാൻ ആകെ അംഗങ്ങളുടെ പകുതി പേർ ഹാജരാകണം.\n3. ലോക്സഭാ സ്പീക്കർക്ക് ഭരണഘടനാ പ്രകാരം കാസ്റ്റിംഗ് വോട്ട് (Casting vote) ഉപയോഗിക്കാൻ അധികാരമില്ല.", 
         options: ["1, 2, 3 തെറ്റാണ്", "1, 3 തെറ്റാണ്", "2 മാത്രം തെറ്റാണ്", "എല്ലാം ശരിയാണ്"], 
         ans: 0, 
-        exp: "1 (ഇടവേള 6 മാസത്തിൽ കൂടരുത് ), 2 (ക്വോറം 1/10 ഭാഗമാണ് ), 3 (സ്പീക്കർക്ക് തുല്യ വോട്ടുകൾ വരുമ്പോൾ കാസ്റ്റിംഗ് വോട്ട് ചെയ്യാം). മൂന്നും തെറ്റാണ്." 
+        exp: "1 (ഇടവേള 6 മാസത്തിൽ കൂടരുത് ), 2 (ക്വോറം 1/10 ഭാഗമാണ് ), 3 (സ്പീക്കർക്ക് തുല്യ വോട്ടുകൾ വരുമ്പോൾ കാസ്റ്റിംഗ് വോട്ട് ചെയ്യാം). മൂന്നും തെറ്റാണ്[span_16](start_span)[span_16](end_span)." 
       },
       { 
         q: "രാജ്യസഭയിലെ അംഗങ്ങളുടെ ഔദ്യോഗിക കാലാവധി എത്ര വർഷമാണ്?", 
         options: ["4 വർഷം", "5 വർഷം", "6 വർഷം", "കാലാവധി നിശ്ചയിച്ചിട്ടില്ല"], 
         ans: 2, 
-        exp: "രാജ്യസഭ ഒരു സ്ഥിരസഭയാണ് (Permanent body), പിരിച്ചുവിടാൻ കഴിയില്ല. എന്നാൽ ഇതിലെ അംഗങ്ങളുടെ കാലാവധി 6 വർഷമാണ് (ഓരോ രണ്ടു വർഷത്തിലും മൂന്നിലൊന്ന് അംഗങ്ങൾ പിരിയുന്നു)." 
+        exp: "രാജ്യസഭ ഒരു സ്ഥിരസഭയാണ് (Permanent body), പിരിച്ചുവിടാൻ കഴിയില്ല. എന്നാൽ ഇതിലെ അംഗങ്ങളുടെ കാലാവധി 6 വർഷമാണ് (ഓരോ രണ്ടു വർഷത്തിലും മൂന്നിലൊന്ന് അംഗങ്ങൾ പിരിയുന്നു)[span_17](start_span)[span_17](end_span)." 
       },
       { 
         q: "ഇന്ത്യൻ ഭരണഘടനയുടെ ആമുഖത്തിൽ 'മതേതരത്വം', 'സോഷ്യലിസം', 'അഖണ്ഡത' എന്നീ വാക്കുകൾ കൂട്ടിച്ചേർത്തത് ഏത് ഭേദഗതിയിലൂടെയാണ്?", 
         options: ["42 ഭേദഗതി", "44 ഭേദഗതി", "73 ഭേദഗതി", "101 ഭേദഗതി"], 
         ans: 0, 
-        exp: "'മിനി കോൺസ്റ്റിറ്റ്യൂഷൻ' എന്നറിയപ്പെടുന്ന 1976-ലെ 42 ഭേദഗതിയിലൂടെയാണ് ആമുഖത്തിലേക്ക് സോഷ്യലിസ്റ്റ്, സെക്കുലർ, ഇന്റഗ്രിറ്റി എന്നീ വാക്കുകൾ കൂട്ടിച്ചേർത്തത്." 
+        exp: "'മിനി കോൺസ്റ്റിറ്റ്യൂഷൻ' എന്നറിയപ്പെടുന്ന 1976-ലെ 42 ഭേദഗതിയിലൂടെയാണ് ആമുഖത്തിലേക്ക് സോഷ്യലിസ്റ്റ്, സെക്കുലർ, ഇന്റഗ്രിറ്റി എന്നീ വാക്കുകൾ കൂട്ടിച്ചേർത്തത്[span_18](start_span)[span_18](end_span)." 
       },
       { 
         q: "മൗലിക അവകാശങ്ങളിൽ ഉൾപ്പെടുന്ന സമത്വത്തിനുള്ള അവകാശം (Right to Equality) സംബന്ധിച്ച പ്രസ്താവനകളിൽ ശരിയായവ ഏവ?\n1. ആർട്ടിക്കിൾ 14 നിയമത്തിനു മുന്നിൽ എല്ലാവരും തുല്യരാണെന്ന് വ്യവസ്ഥ ചെയ്യുന്നു.\n2. ആർട്ടിക്കിൾ 17 അശ്ലീല പ്രദർശനങ്ങളും നിയമവിരുദ്ധ കാര്യങ്ങളും കർശനമായി നിരോധിക്കുന്നു.\n3. ആർട്ടിക്കിൾ 18 പദവികളും ബിരുദങ്ങളും (Titles) നൽകുന്നത് ഒഴിവാക്കുന്നു.", 
         options: ["1, 3 ശരിയാണ്", "1, 2 ശരിയാണ്", "2, 3 ശരിയാണ്", "1, 2, 3 പ്രസ്താവനകളും ശരിയാണ്"], 
         ans: 0, 
-        exp: "രണ്ടാമത്തെ പ്രസ്താവന തെറ്റാണ്. ആർട്ടിക്കിൾ 17 തൊട്ടുകൂായ്മ നിർമ്മാർത്ഥനം (Abolition of Untouchability) ചെയ്യുന്നതാണ്. 1, 3 പ്രസ്താവനകൾ ശരിയാണ്." 
+        exp: "രണ്ടാമത്തെ പ്രസ്താവന തെറ്റാണ്. ആർട്ടിക്കിൾ 17 തൊട്ടുകൂായ്മ നിർമ്മാർത്ഥനം (Abolition of Untouchability) ചെയ്യുന്നതാണ്. 1, 3 പ്രസ്താവനകൾ ശരിയാണ്[span_19](start_span)[span_19](end_span)." 
       },
       { 
         q: "മൗലിക കടമകൾ ഏത് രാജ്യത്തിന്റെ ഭരണഘടനയിൽ നിന്നാണ് ഇന്ത്യൻ ഭരണഘടനയിലേക്ക് കടമെടുത്തത്?", 
         options: ["യു.എസ്.എ", "യുകെ (ബ്രിട്ടൻ)", "സോവിയറ്റ് യൂണിയൻ (USSR / റഷ്യ)", "അയർലൻഡ്"], 
         ans: 2, 
-        exp: "മുൻ സോവിയറ്റ് യൂണിയൻ്റെ (USSR) ഭരണഘടനയിൽ നിന്നാണ് ഇന്ത്യ മൗലിക കടമകളുടെ ആശംസ ഉൾക്കൊണ്ടത്." 
+        exp: "മുൻ സോവിയറ്റ് യൂണിയൻ്റെ (USSR) ഭരണഘടനയിൽ നിന്നാണ് ഇന്ത്യ മൗലിക കടമകളുടെ ആശംസ ഉൾക്കൊണ്ടത്[span_20](start_span)[span_20](end_span)." 
       },
       { 
         q: "സർക്കാരിന്റെ എക്സിക്യൂട്ടീവ് വിഭാഗത്തെക്കുറിച്ചുള്ള പ്രസ്താവനകളിൽ ശരിയായവ ഏവ?\n1. കേന്ദ്ര തലത്തിൽ രാഷ്ട്രപതിയും പ്രധാനമന്ത്രിയും മന്ത്രിസഭയും ചേർന്നതാണ് എക്സിക്യൂട്ടീവ്.\n2. രാജ്യത്തിന്റെ നാമമാത്ര തലവൻ പ്രധാനമന്ത്രിയും യഥാർത്ഥ തലവൻ രാഷ്ട്രപതിയുമാണ്.\n3. കേന്ദ്ര മന്ത്രിസഭ കൂട്ടായി ലോക്‌സഭയോട് ഉത്തരവാദപ്പെട്ടിരിക്കുന്നു.", 
         options: ["1, 3 ശരിയാണ്", "1, 2 ശരിയാണ്", "2, 3 ശരിയാണ്", "1, 2, 3 പ്രസ്താവനകളും ശരിയാണ്"], 
         ans: 0, 
-        exp: "രണ്ടാമത്തെ പ്രസ്താവന തെറ്റാണ്. നാമമാത്ര തലവൻ രാഷ്ട്രപതിയും യഥാർത്ഥ തലവൻ പ്രധാനമന്ത്രിയുമാണ് (സ്ഥാനങ്ങൾ മാറി നൽകിയിരിക്കുന്നു). 1, 3 ശരിയാണ്." 
+        exp: "രണ്ടാമത്തെ പ്രസ്താവന തെറ്റാണ്. നാമമാത്ര തലവൻ രാഷ്ട്രപതിയും യഥാർത്ഥ തലവൻ പ്രധാനമന്ത്രിയുമാണ് (സ്ഥാനങ്ങൾ മാറി നൽകിയിരിക്കുന്നു). 1, 3 ശരിയാണ്[span_21](start_span)[span_21](end_span)." 
       },
       { 
         q: "ഒരു മണിബില്ല് (Money Bill) ആണോ അല്ലയോ എന്ന് അന്തിമമായി തീരുമാനിക്കുന്നത് ആരാണ്?", 
         options: ["രാജ്യസഭാ ചെയർമാൻ", "ലോക്‌സഭാ സ്പീക്കർ", "ധനകാര്യ മന്ത്രി", "രാഷ്ട്രപതി"], 
         ans: 1, 
-        exp: "ആർട്ടിക്കിൾ 110 പ്രകാരം ഒരു ബിൽ മണിബില്ലാണോ എന്ന് തീരുമാനിക്കാനുള്ള പരമാധികാരം ലോക്‌സഭാ സ്പീക്കർക്കാണ്." 
+        exp: "ആർട്ടിക്കിൾ 110 പ്രകാരം ഒരു ബിൽ മണിബില്ലാണോ എന്ന് തീരുമാനിക്കാനുള്ള പരമാധികാരം ലോക്‌സഭാ സ്പീക്കർക്കാണ്[span_22](start_span)[span_22](end_span)." 
       },
       { 
         q: "ഇന്ത്യൻ പാർലമെൻ്ററി സമ്പ്രദായത്തിന്റെ പ്രധാന പ്രത്യേകതകൾ കുറിച്ച് തെറ്റായ പ്രസ്താവന ഏത്?\n1. നാമമാത്ര ഭരണാധികാരിയും യഥാർത്ഥ ഭരണാധികാരിയും ഉണ്ടെന്നുള്ളത് പാർലമെന്ററി രീതിയുടെ പ്രത്യേകതയാണ്.\n2. എക്സിക്യൂട്ടീവ് വിഭാഗം ലെജിസ്ലേച്ചറിനോട് ഉത്തരവാദപ്പെട്ടിരിക്കുന്നു.\n3. ഇന്ത്യയിൽ പ്രസിഡന്റ് ഭരണകൂട സമ്പ്രദായമാണ് പൂർണ്ണമായി പിന്തുടരുന്നത്.", 
         options: ["3 മാത്രം തെറ്റാണ്", "1, 2 തെറ്റാണ്", "1 മാത്രം തെറ്റാണ്", "എല്ലാം തെറ്റാണ്"], 
         ans: 0, 
-        exp: "മൂന്നാമത്തെ പ്രസ്താവന തെറ്റാണ്. ഇന്ത്യ പിന്തുടരുന്നത് ബ്രിട്ടീഷ് മാതൃകയിലുള്ള പാർലമെൻ്ററി സമ്പ്രദായമാണ്, അമേരിക്കൻ രീതിയിലുള്ള പ്രസിഡന്റ് ഭരണ രീതിയല്ല. 1, 2 ശരിയാണ്." 
+        exp: "മൂന്നാമത്തെ പ്രസ്താവന തെറ്റാണ്. ഇന്ത്യ പിന്തുടരുന്നത് ബ്രിട്ടീഷ് മാതൃകയിലുള്ള പാർലമെൻ്ററി സമ്പ്രദായമാണ്, അമേരിക്കൻ രീതിയിലുള്ള പ്രസിഡന്റ് ഭരണ രീതിയല്ല. 1, 2 ശരിയാണ്[span_23](start_span)[span_23](end_span)." 
       },
       { 
         q: "ഇന്ത്യൻ ഭരണഘടനയുടെ ഏതെങ്കിലും ഭാഗം ഭരണഘടനാ വിരുദ്ധമെന്ന് പ്രഖ്യാപിക്കാൻ കോടതികൾക്ക് അധികാരം നൽകുന്ന തത്ത്വം ഏതാണ്?", 
         options: ["ജുഡീഷ്യൽ റിവ്യൂ", "ഡോക്ട്രിൻ ഓഫ് ലാപ്സ്", "ഓർഡിനൻസ്", "കൂട്ടായ ഉത്തരവാദിത്തം"], 
         ans: 0, 
-        exp: "പാർലമെൻ്റ് പാസാക്കുന്ന നിയമങ്ങളും ഭരണഘടനയുടെ അടിസ്ഥാന തത്ത്വങ്ങൾക്ക് നിരക്കാത്തവയാണെങ്കിൽ അവ അസാധുവാക്കാൻ ജുഡീഷ്യറിക്ക് നൽകിയിട്ടുള്ള അധികാരമാണ് ജുഡീഷ്യൽ റിവ്യൂ." 
+        exp: "പാർലമെൻ്റ് പാസാക്കുന്ന നിയമങ്ങളും ഭരണഘടനയുടെ അടിസ്ഥാന തത്ത്വങ്ങൾക്ക് നിരക്കാത്തവയാണെങ്കിൽ അവ അസാധുവാക്കാൻ ജുഡീഷ്യറിക്ക് നൽകിയിട്ടുള്ള അധികാരമാണ് ജുഡീഷ്യൽ റിവ്യൂ[span_24](start_span)[span_24](end_span)." 
       },
       { 
         q: "അടിയന്തിരാവസ്ഥക്കാലത്ത് പോലും റദ്ദാക്കാൻ കഴിയാത്ത മൗലിക അവകാശങ്ങൾ ഏവ?", 
         options: ["ആർട്ടിക്കിൾ 14, 19", "ആർട്ടിക്കിൾ 20, 21", "ആർട്ടിക്കിൾ 15, 16", "ആർട്ടിക്കിൾ 25, 26"], 
         ans: 1, 
-        exp: "ദേശീയ അടിയന്തിരാവസ്ഥ പ്രഖ്യാപിച്ചാൽ പോലും ആർട്ടിക്കിൾ 20 (കുറ്റകൃത്യങ്ങളിൽ നിന്നുള്ള സംരക്ഷണം), ആർട്ടിക്കിൾ 21 (ജീവനും വ്യക്തിസ്വാതന്ത്ര്യത്തിനുമുള്ള അവകാശം) എന്നിവ റദ്ദാക്കാനാവില്ല." 
+        exp: "ദേശീയ അടിയന്തിരാവസ്ഥ പ്രഖ്യാപിച്ചാൽ പോലും ആർട്ടിക്കിൾ 20 (കുറ്റകൃത്യങ്ങളിൽ നിന്നുള്ള സംരക്ഷണം), ആർട്ടിക്കിൾ 21 (ജീവനും വ്യക്തിസ്വാതന്ത്ര്യത്തിനുമുള്ള അവകാശം) എന്നിവ റദ്ദാക്കാനാവില്ല[span_25](start_span)[span_25](end_span)." 
       },
       { 
         q: "ഇന്ത്യൻ പാർലമെന്റിന്റെ സംയുക്ത സമ്മേളനം വിളിച്ചുകൂട്ടാനുള്ള അധികാരം ആർക്കാണ്?", 
         options: ["ലോക്സ‌ഭാ സ്പീക്കർ", "രാഷ്ട്രപതി", "ഉപരാഷ്ട്രപതി", "പ്രധാനമന്ത്രി"], 
         ans: 1, 
-        exp: "ഇരുസഭകൾ തമ്മിൽ അഭിപ്രായവ്യത്യാസം ഉണ്ടാകുമ്പോൾ ആർട്ടിക്കിൾ 108 പ്രകാരം സംയുക്ത സമ്മേളനം വിളിക്കുന്നത് രാഷ്ട്രപതിയാണ് (അധ്യക്ഷൻ സ്പീക്കറാണ്)." 
+        exp: "ഇരുസഭകൾ തമ്മിൽ അഭിപ്രായവ്യത്യാസം ഉണ്ടാകുമ്പോൾ ആർട്ടിക്കിൾ 108 പ്രകാരം സംയുക്ത സമ്മേളനം വിളിക്കുന്നത് രാഷ്ട്രപതിയാണ് (അധ്യക്ഷൻ സ്പീക്കറാണ്)[span_26](start_span)[span_26](end_span)." 
       }
     ];
 
-    let currentUser = null;
+    let currentUser = { name: "പഠിതാവ്", phone: "0000000000" };
     let currentIndex = 0;
     let userAnswers = new Array(questionsData.length).fill(null);
+    let wrongQuestionsList = [];
     let currentFontSizeLevel = 1;
 
     const fontSizes = [
@@ -474,31 +448,125 @@
     let timeLeft = 25 * 60;
     let timerInterval = null;
 
-    const loginCard = document.getElementById('loginCard');
     const motivationScreen = document.getElementById('motivationScreen');
     const quizScreen = document.getElementById('quizScreen');
     const resultScreen = document.getElementById('resultScreen');
 
-    function playBeepSound() {
-      try {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const oscillator = audioCtx.createOscillator();
-        const gainNode = audioCtx.createGain();
-        oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(587.33, audioCtx.currentTime);
-        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-        oscillator.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
-        oscillator.start();
-        oscillator.stop(audioCtx.currentTime + 0.15);
-      } catch (e) {}
-    }
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const passedName = urlParams.get('name');
+      const passedPhone = urlParams.get('phone');
+      const passedTitle = urlParams.get('title');
+      const passedSheet = urlParams.get('sheetUrl');
+      const passedPdf = urlParams.get('pdfUrl');
 
-    function triggerVibration() {
-      if ("vibrate" in navigator) {
-        try { navigator.vibrate([200, 100, 200]); } catch (e) {}
+      if (passedName && passedName.trim() !== '') {
+        currentUser.name = decodeURIComponent(passedName).trim();
+      } else {
+        try {
+          const storedUser = localStorage.getItem('sk_user_name');
+          if (storedUser && storedUser.trim() !== '') {
+            currentUser.name = storedUser.trim();
+          }
+        } catch (e) {}
       }
-    }
+
+      if (passedPhone) currentUser.phone = decodeURIComponent(passedPhone);
+      
+      if (passedTitle) {
+        examTitle = decodeURIComponent(passedTitle).trim();
+        document.getElementById('headerExamTitle').innerText = examTitle;
+        document.getElementById('motivateSubTitle').innerText = `${examTitle} പരീക്ഷയിലേക്ക് സ്വാഗതം!`;
+        document.getElementById('pdfExportExamTitle').innerText = `${examTitle} - ഉത്തര സൂചിക`;
+      }
+      
+      if (passedSheet) GOOGLE_SHEET_WEBAPP_URL = decodeURIComponent(passedSheet);
+      if (passedPdf) ORIGINAL_PDF_URL = decodeURIComponent(passedPdf);
+
+      const displayElem = document.getElementById('displayUser');
+      if (displayElem) {
+        displayElem.innerText = (currentUser.phone && currentUser.phone !== "0000000000")
+          ? `${currentUser.name} (+91 ${currentUser.phone})`
+          : currentUser.name;
+      }
+
+      const motElem = document.getElementById('motivateName');
+      if (motElem) {
+        motElem.innerText = `ഹലോ, ${currentUser.name}! ✨`;
+      }
+
+      const currentFullUrl = window.location.href.toLowerCase();
+      const isReviewMode = currentFullUrl.includes("view=solution") || 
+                           currentFullUrl.includes("solution") || 
+                           currentFullUrl.includes("result") || 
+                           currentFullUrl.includes("review") ||
+                           urlParams.get('view') === 'solution';
+
+      if (isReviewMode) {
+        if (motivationScreen) {
+          motivationScreen.classList.add('hidden');
+          motivationScreen.style.setProperty('display', 'none', 'important');
+        }
+
+        if (quizScreen) {
+          quizScreen.classList.add('hidden');
+          quizScreen.classList.remove('flex');
+          quizScreen.style.setProperty('display', 'none', 'important');
+        }
+
+        if (resultScreen) {
+          resultScreen.classList.remove('hidden');
+          resultScreen.style.setProperty('display', 'block', 'important');
+        }
+
+        let prevScore = urlParams.get('score');
+        let prevCorrect = urlParams.get('correct');
+        let prevWrong = urlParams.get('wrong');
+        let prevSkipped = urlParams.get('skipped');
+
+        if ((!prevScore || prevScore === "0.00" || prevScore === "0") && currentUser.phone) {
+          try {
+            const histKey = `sk_history_${currentUser.phone}`;
+            const history = JSON.parse(localStorage.getItem(histKey) || '[]');
+            const matched = history.slice().reverse().find(h => 
+              h.title === examTitle || 
+              h.title === QUIZ_SHEET_NAME ||
+              (h.title && (h.title.includes("Constitution") || h.title.includes("ഭരണഘടന")))
+            );
+            if (matched) {
+              prevScore = matched.score;
+              prevCorrect = matched.correct;
+              prevWrong = matched.wrong;
+              prevSkipped = matched.skipped;
+            }
+          } catch(e) {}
+        }
+
+        document.getElementById('resultHeaderTitle').innerText = "കഴിഞ്ഞ പരീക്ഷാ ഫലം & ഉത്തര സൂചിക";
+        document.getElementById('finalScore').innerText = prevScore !== null ? Number(prevScore).toFixed(2) : "0.00";
+        document.getElementById('correctCount').innerText = prevCorrect !== null ? prevCorrect : "0";
+        document.getElementById('wrongCount').innerText = prevWrong !== null ? prevWrong : "0";
+        document.getElementById('skipCount').innerText = prevSkipped !== null ? prevSkipped : "0";
+
+        const statusElem = document.getElementById('sheetStatus');
+        if (statusElem) statusElem.style.display = 'none';
+
+        const subBadge = document.getElementById('resultSubBadge');
+        if (subBadge) subBadge.innerText = "✓ നിങ്ങൾ മുമ്പ് പൂർത്തിയാക്കിയ പരീക്ഷയുടെ ഉത്തരസൂചിക താഴെ നൽകിയിരിക്കുന്നു";
+
+        const badge = document.getElementById('scoreMotivationBadge');
+        if (badge) {
+          badge.className = "max-w-xl mx-auto p-4 rounded-2xl border border-cyan-500/60 bg-cyan-950/40 text-cyan-300";
+          badge.innerHTML = `📖 <strong>മുൻപത്തെ സ്കോർ അവലോകനം</strong> (Previous Attempt Review Mode)`;
+        }
+
+        renderReviewOnlySolutions();
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 100);
+        return;
+      }
+    });
 
     document.getElementById('fullscreenToggleBtn').onclick = () => {
       if (!document.fullscreenElement) {
@@ -525,35 +593,14 @@
       qElem.className = `${fontSizes[currentFontSizeLevel].q} font-semibold leading-relaxed text-slate-100 whitespace-pre-line transition-all duration-200`;
     }
 
-    function triggerMotivationAndStart() {
-      loginCard.classList.add('hidden');
-      document.getElementById('motivateName').innerText = `ഹലോ, ${currentUser.name}! ✨`;
-      motivationScreen.classList.remove('hidden');
-
-      playBeepSound();
-      triggerVibration();
-
-      let count = 3;
-      const countElem = document.getElementById('countdownNumber');
-      countElem.innerText = count;
-
-      const countdownTimer = setInterval(() => {
-        count--;
-        if (count > 0) {
-          countElem.innerText = count;
-          playBeepSound();
-          triggerVibration();
-        } else {
-          clearInterval(countdownTimer);
-          playBeepSound();
-          triggerVibration();
-          motivationScreen.classList.add('hidden');
-          quizScreen.classList.remove('hidden');
-          buildPalette();
-          renderQuestion(0);
-          startTimer();
-        }
-      }, 1000);
+    function startExamDirectly() {
+      motivationScreen.classList.add('hidden');
+      motivationScreen.style.setProperty('display', 'none', 'important');
+      quizScreen.classList.remove('hidden');
+      quizScreen.classList.add('flex');
+      buildPalette();
+      renderQuestion(0);
+      startTimer();
     }
 
     function startTimer() {
@@ -561,29 +608,20 @@
       timerInterval = setInterval(() => {
         if (timeLeft <= 0) {
           clearInterval(timerInterval);
-          playBeepSound();
-          triggerVibration();
           alert('അനുവദിച്ച 25 മിനിറ്റ് സമയം പൂർത്തിയായിരിക്കുന്നു! പരീക്ഷ തനിയെ സബ്മിറ്റ് ചെയ്യുന്നു.');
           finishExam();
           return;
         }
 
         timeLeft--;
-
-        if (timeLeft <= 10 && timeLeft > 0) {
-          playBeepSound();
-          triggerVibration();
-        }
-
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
-
         const mStr = minutes < 10 ? '0' + minutes : minutes;
         const sStr = seconds < 10 ? '0' + seconds : seconds;
         timerDisplay.innerText = `${mStr}:${sStr}`;
 
         if (timeLeft <= 180) {
-          timerDisplay.classList.remove('text-amber-400');
+          timerDisplay.classList.remove('text-cyan-400');
           timerDisplay.classList.add('text-rose-500', 'animate-pulse');
         }
       }, 1000);
@@ -591,6 +629,7 @@
 
     function renderQuestion(index) {
       const q = questionsData[index];
+      currentIndex = index;
       document.getElementById('questionBadge').innerText = `ചോദ്യം ${index + 1} / ${questionsData.length}`;
       document.getElementById('qText').innerText = `${index + 1}. ${q.q}`;
 
@@ -604,12 +643,12 @@
         btn.type = 'button';
         btn.className = `w-full text-left p-3.5 rounded-xl border transition flex items-start space-x-3 ${
           isSelected 
-            ? 'bg-amber-500/20 border-amber-500 text-amber-200 ring-1 ring-amber-500' 
+            ? 'bg-cyan-500/20 border-cyan-500 text-cyan-200 ring-1 ring-cyan-500' 
             : 'bg-slate-900/60 border-slate-700 hover:bg-slate-700/50 text-slate-200'
         }`;
         btn.innerHTML = `
           <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs font-bold ${
-            isSelected ? 'bg-amber-500 text-slate-950 font-black' : 'bg-slate-800 text-slate-400'
+            isSelected ? 'bg-cyan-500 text-slate-950 font-black' : 'bg-slate-800 text-slate-400'
           }">${letters[idx]}</span>
           <span class="text-xs sm:text-sm leading-relaxed mt-0.5">${opt}</span>
         `;
@@ -635,7 +674,7 @@
       const reason = prompt(`ചോദ്യം ${qNum} ൽ എന്തെങ്കിലും തെറ്റുകൾ ഉണ്ടെങ്കിൽ ദയവായി താഴെ രേഖപ്പെടുത്തുക:`);
       if (reason && reason.trim()) {
         sendReportQuestionToGoogleSheet(qNum, reason.trim());
-        alert(`നന്ദി! ചോദ്യം ${qNum} ലെ തെറ്റ് വിജയകരമായി റിപ്പോർട്ട് ചെയ്തിരിക്കുന്നു.`);
+        alert(`നന്ദി! ചോദ്യം ${qNum} ലെ സംശയം വിജയകരമായി റിപ്പോർട്ട് ചെയ്തിരിക്കുന്നു.`);
       }
     }
 
@@ -658,7 +697,7 @@
         const b = document.getElementById(`pal-${i}`);
         if (!b) continue;
         if (i === currentIndex) {
-          b.className = 'w-7 h-7 rounded text-[11px] font-black border border-amber-400 bg-amber-400 text-slate-950';
+          b.className = 'w-7 h-7 rounded text-[11px] font-black border border-cyan-400 bg-cyan-400 text-slate-950';
         } else if (userAnswers[i] !== null) {
           b.className = 'w-7 h-7 rounded text-[11px] font-semibold border border-emerald-500/50 bg-emerald-950/60 text-emerald-400';
         } else {
@@ -701,7 +740,7 @@
       if (timerInterval) clearInterval(timerInterval);
 
       let correct = 0, wrong = 0, skipped = 0;
-      let wrongQuestionsList = [];
+      wrongQuestionsList = [];
 
       for (let i = 0; i < questionsData.length; i++) {
         if (userAnswers[i] === null) {
@@ -723,40 +762,62 @@
       document.getElementById('correctCount').innerText = correct;
       document.getElementById('wrongCount').innerText = wrong;
       document.getElementById('skipCount').innerText = skipped;
-      document.getElementById('resultCandidateInfo').innerText = `പരീക്ഷാർത്ഥി: ${currentUser.name} | മൊബൈൽ: ${currentUser.phone}`;
-      document.getElementById('pdfReportCandidateSubheader').innerText = `പരീക്ഷാർത്ഥി: ${currentUser.name} (${currentUser.phone}) | സ്കോർ: ${formattedScore} / 25 | ശരി: ${correct} | തെറ്റ്: ${wrong} | Skip: ${skipped}`;
+      document.getElementById('resultCandidateInfo').innerText = `വിദ്യാർത്ഥി: ${currentUser.name} | മൊബൈൽ: ${currentUser.phone}`;
+      document.getElementById('pdfReportCandidateSubheader').innerText = `വിദ്യാർത്ഥി: ${currentUser.name} (${currentUser.phone}) | സ്കോർ: ${formattedScore} / 25 | ശരി: ${correct} | തെറ്റ്: ${wrong} | Skip: ${skipped}`;
 
       const badge = document.getElementById('scoreMotivationBadge');
       if (scoreNum >= 20) {
-        badge.className = "max-w-xl mx-auto mb-6 p-4 rounded-2xl border border-emerald-500/60 bg-emerald-950/40 text-emerald-300";
-        badge.innerHTML = `🌟 <strong>അത്യുജ്ജ്വല പ്രകടനം!</strong> ഇന്ത്യൻ ഭരണഘടനയിൽ നിങ്ങൾ മികച്ച അറിവ് നേടിയിരിക്കുന്നു. ഇതേ ആത്മവിശ്വാസത്തോടെ അടുത്ത പരീക്ഷകളെയും നേരിടുക!`;
+        badge.className = "max-w-xl mx-auto p-4 rounded-2xl border border-emerald-500/60 bg-emerald-950/40 text-emerald-300";
+        badge.innerHTML = `🌟 <strong>അത്യുജ്ജ്വല പ്രകടനം!</strong> ഇന്ത്യൻ ഭരണഘടനയിൽ നിങ്ങൾ മികച്ച അറിവ് നേടിയിരിക്കുന്നു!`;
       } else if (scoreNum >= 14) {
-        badge.className = "max-w-xl mx-auto mb-6 p-4 rounded-2xl border border-amber-500/60 bg-amber-950/40 text-amber-300";
-        badge.innerHTML = `👍 <strong>വളരെ നല്ല പ്രകടനം!</strong> ചെറിയ ചില തെറ്റുകൾ തിരുത്തിയാൽ നിങ്ങൾക്ക് പൂർണ്ണ സ്കോറിലേക്ക് എത്താം. വിശദീകരണങ്ങൾ ശ്രദ്ധിച്ചു വായിക്കുക!`;
+        badge.className = "max-w-xl mx-auto p-4 rounded-2xl border border-cyan-500/60 bg-cyan-950/40 text-cyan-300";
+        badge.innerHTML = `👍 <strong>മികച്ച പ്രകടനം!</strong> ചെറിയ ചില തെറ്റുകൾ തിരുത്തിയാൽ പൂർണ്ണ മാർക്കിലേക്ക് എത്താം.`;
       } else if (scoreNum >= 8) {
-        badge.className = "max-w-xl mx-auto mb-6 p-4 rounded-2xl border border-yellow-500/60 bg-yellow-950/40 text-yellow-300";
-        badge.innerHTML = `📖 <strong>നല്ല ശ്രമം!</strong> ഇനിയും കൂടുതൽ ആവർത്തിച്ചു പഠിക്കേണ്ടതുണ്ട്. തെറ്റിയ ചോദ്യങ്ങളും വിശദീകരണങ്ങളും വീണ്ടും പരിശീലിച്ച് സ്കോർ മെച്ചപ്പെടുത്തുക.`;
+        badge.className = "max-w-xl mx-auto p-4 rounded-2xl border border-amber-500/60 bg-amber-950/40 text-amber-300";
+        badge.innerHTML = `📖 <strong>നല്ലൊരു ശ്രമം!</strong> കൂടുതൽ വായനയും റിവിഷനും നടത്തി സ്കോർ ഉയർത്തുക.`;
       } else {
-        badge.className = "max-w-xl mx-auto mb-6 p-4 rounded-2xl border border-rose-500/60 bg-rose-950/40 text-rose-300";
-        badge.innerHTML = `💪 <strong>നിരാശപ്പെടരുത്!</strong> ഇതൊരു തുടക്കം മാത്രമാണ്. നോട്ട്സുകൾ വീണ്ടും വായിച്ചുപഠിച്ച് വീണ്ടും പരീക്ഷ എഴുതുക, വിജയം നിങ്ങളെ തേടിയെത്തും!`;
+        badge.className = "max-w-xl mx-auto p-4 rounded-2xl border border-rose-500/60 bg-rose-950/40 text-rose-300";
+        badge.innerHTML = `💪 <strong>തളരരുത്!</strong> നോട്ട്സുകൾ കൂടുതൽ ആഴത്തിൽ പഠിച്ച് വീണ്ടും പരിശീലിക്കുക.`;
       }
+
+      try {
+        if (currentUser && currentUser.phone && currentUser.phone !== "0000000000") {
+          const historyKey = `sk_history_${currentUser.phone}`;
+          let history = JSON.parse(localStorage.getItem(historyKey) || '[]');
+          
+          history = history.filter(h => !(h.title && (h.title === examTitle || h.title === QUIZ_SHEET_NAME)));
+          history.push({
+            title: examTitle,
+            sheetName: QUIZ_SHEET_NAME,
+            score: formattedScore,
+            correct: correct,
+            wrong: wrong,
+            skipped: skipped,
+            date: new Date().toLocaleDateString('ml-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+          });
+          localStorage.setItem(historyKey, JSON.stringify(history));
+        }
+      } catch (err) {}
 
       const downloadBtn = document.getElementById('downloadOriginalNoteBtn');
       const lockNotice = document.getElementById('pdfLockNotice');
 
-      if (scoreNum >= 8.0) {
+      if (scoreNum >= 8.0 && ORIGINAL_PDF_URL) {
         downloadBtn.classList.remove('hidden');
         lockNotice.classList.add('hidden');
       } else {
         downloadBtn.classList.add('hidden');
-        lockNotice.classList.remove('hidden');
+        if (ORIGINAL_PDF_URL) lockNotice.classList.remove('hidden');
       }
 
       renderSolutions();
       setupClickableReviewCards();
 
+      motivationScreen.style.setProperty('display', 'none', 'important');
       quizScreen.classList.add('hidden');
+      quizScreen.classList.remove('flex');
       resultScreen.classList.remove('hidden');
+      resultScreen.style.setProperty('display', 'block', 'important');
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
       sendResultToGoogleSheet({
@@ -766,7 +827,8 @@
         correct: correct,
         wrong: wrong,
         skipped: skipped,
-        wrongQuestions: wrongQuestionsList
+        wrongQuestions: wrongQuestionsList,
+        wrongQuestionsArray: wrongQuestionsList
       });
     }
 
@@ -786,13 +848,13 @@
       area.classList.remove('hidden');
 
       if (type === 'correct') {
-        title.innerHTML = `✅ നിങ്ങൾ ശരിയാക്കിയ ചോദ്യങ്ങൾ (Correct Answers)`;
+        title.innerHTML = `✅ നിങ്ങൾ ശരിയാക്കിയ ചോദ്യങ്ങൾ`;
         title.className = "text-lg font-bold text-emerald-400";
       } else if (type === 'wrong') {
-        title.innerHTML = `❌ നിങ്ങൾക്ക് തെറ്റിയ ചോദ്യങ്ങൾ (Wrong Answers)`;
+        title.innerHTML = `❌ നിങ്ങൾക്ക് തെറ്റിയ ചോദ്യങ്ങൾ`;
         title.className = "text-lg font-bold text-rose-400";
       } else {
-        title.innerHTML = `⏭️ നിങ്ങൾ ഒഴിവാക്കിയ ചോദ്യങ്ങൾ (Skipped Questions)`;
+        title.innerHTML = `⏭️ നിങ്ങൾ ഒഴിവാക്കിയ ചോദ്യങ്ങൾ`;
         title.className = "text-lg font-bold text-slate-300";
       }
 
@@ -830,7 +892,7 @@
 
           card.innerHTML = `
             <div class="flex items-center justify-between">
-              <span class="font-bold text-amber-400">ചോദ്യം ${idx + 1}</span>
+              <span class="font-bold text-cyan-400">ചോദ്യം ${idx + 1}</span>
               <div class="flex items-center space-x-2">
                 ${statusBadge}
                 <button onclick="handleReportQuestion(${idx + 1})" class="px-2 py-0.5 bg-rose-950 border border-rose-700 text-[10px] font-bold text-rose-300 rounded hover:bg-rose-900 transition">Report 🚩</button>
@@ -839,7 +901,7 @@
             <p class="text-slate-200 font-medium">${q.q}</p>
             ${optsMarkup}
             <div class="bg-slate-800 p-2.5 rounded-lg border border-slate-700 mt-2 text-xs leading-relaxed">
-              <span class="font-bold text-amber-400">വിശദീകരണം:</span>
+              <span class="font-bold text-cyan-400">വിശദീകരണം:</span>
               <span class="text-slate-300 ml-1">${q.exp}</span>
             </div>
           `;
@@ -858,17 +920,18 @@
       document.getElementById('filterReviewArea').classList.add('hidden');
     };
 
-    document.getElementById('downloadOriginalNoteBtn').onclick = () => {
+    function openFeedbackModal() {
       document.getElementById('feedbackModal').classList.remove('hidden');
-    };
-
-    document.getElementById('likeBtn').onclick = () => recordFeedbackAndOpenDownload('Like');
-    document.getElementById('dislikeBtn').onclick = () => recordFeedbackAndOpenDownload('Dislike');
+    }
 
     function recordFeedbackAndOpenDownload(feedbackVal) {
       document.getElementById('feedbackModal').classList.add('hidden');
       sendFeedbackToGoogleSheet(currentUser.phone, feedbackVal);
-      window.open(ORIGINAL_PDF_URL, '_blank');
+      if (ORIGINAL_PDF_URL) {
+        window.open(ORIGINAL_PDF_URL, '_blank');
+      } else {
+        alert('ഔദ്യോഗിക PDF ലിങ്ക് ഉടൻ ലഭ്യമാക്കുന്നതാണ്.');
+      }
     }
 
     function sendResultToGoogleSheet(payload) {
@@ -889,7 +952,7 @@
       })
       .then(() => {
         statusDiv.innerText = `✓ മാർക്ക് '${QUIZ_SHEET_NAME}' എന്ന ഷീറ്റ് ടാബിലേക്ക് രേഖപ്പെടുത്തി!`;
-        statusDiv.className = "text-xs text-amber-400 mb-4";
+        statusDiv.className = "text-xs text-cyan-400 mb-4";
       })
       .catch(() => {
         statusDiv.innerText = "ഡാറ്റ സേവ് ചെയ്യുന്നതിൽ ചെറിയ തടസ്സം നേരിട്ടു.";
@@ -927,6 +990,47 @@
       });
     }
 
+    function renderReviewOnlySolutions() {
+      const cont = document.getElementById('solutionsContainer');
+      cont.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+
+      questionsData.forEach((q, idx) => {
+        let optsHtml = '<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">';
+        q.options.forEach((opt, oIdx) => {
+          let isAns = (oIdx === q.ans);
+          let c = isAns 
+            ? 'border-emerald-500 bg-emerald-950/40 text-emerald-300 font-semibold border ' 
+            : 'border-slate-800 text-slate-400 border ';
+
+          optsHtml += `
+            <div class="${c} p-2.5 rounded-lg text-xs flex items-center space-x-2">
+              <span class="font-bold">${letters[oIdx]})</span>
+              <span>${opt}</span>
+              ${isAns ? '<span class="ml-auto text-emerald-400 font-bold">✓ ശരിയുത്തരം</span>' : ''}
+            </div>
+          `;
+        });
+        optsHtml += '</div>';
+
+        const item = document.createElement('div');
+        item.className = 'p-4 rounded-xl border border-slate-700 bg-slate-900/70 space-y-2';
+        item.innerHTML = `
+          <div class="flex justify-between items-start gap-2">
+            <span class="font-bold text-cyan-400 text-sm">ചോദ്യം ${idx + 1}</span>
+            <span class="px-2.5 py-0.5 rounded text-[11px] bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold">Official Key</span>
+          </div>
+          <p class="text-sm font-medium text-slate-200 whitespace-pre-line">${q.q}</p>
+          ${optsHtml}
+          <div class="bg-slate-800 p-2.5 rounded-lg border border-slate-700 mt-2 text-xs leading-relaxed">
+            <span class="font-bold text-cyan-400">വിശദീകരണം:</span>
+            <span class="text-slate-300 ml-1">${q.exp}</span>
+          </div>
+        `;
+        cont.appendChild(item);
+      });
+    }
+
     function renderSolutions() {
       const cont = document.getElementById('solutionsContainer');
       cont.innerHTML = '';
@@ -938,9 +1042,9 @@
         const isSkipped = uAns === null;
 
         let badge = isSkipped 
-          ? '<span class="px-2 py-0.5 rounded text-xs bg-slate-700 text-slate-300">Skipped</span>'
+          ? '<span class="px-2 py-0.5 rounded text-xs bg-slate-700 text-slate-300">Skipped (മാർക്ക് മാറ്റമില്ല)</span>' 
           : isCorrect 
-          ? '<span class="px-2 py-0.5 rounded text-xs bg-emerald-950 text-emerald-400 border border-emerald-800 font-bold">+1.00 Mark (ശരിയുത്തരം)</span>'
+          ? '<span class="px-2 py-0.5 rounded text-xs bg-emerald-950 text-emerald-400 border border-emerald-800 font-bold">+1.00 Mark (ശരിയുത്തരം)</span>' 
           : '<span class="px-2 py-0.5 rounded text-xs bg-rose-950 text-rose-400 border border-rose-800 font-bold">-0.33 Mark (തെറ്റ്)</span>';
 
         let optsHtml = '<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">';
@@ -965,18 +1069,18 @@
         item.className = 'p-4 rounded-xl border border-slate-700 bg-slate-900/70 space-y-2';
         item.innerHTML = `
           <div class="flex justify-between items-start gap-2">
-            <span class="font-bold text-amber-400 text-sm">ചോദ്യം ${idx + 1}</span>
+            <span class="font-bold text-cyan-400 text-sm">ചോദ്യം ${idx + 1}</span>
             <div class="flex items-center space-x-2">
               <div>${badge}</div>
-              <button onclick="handleReportQuestion(${idx + 1})" class="px-2 py-0.5 bg-rose-950 border border-rose-700 text-[10px] font-bold text-rose-300 rounded hover:bg-rose-900 transition flex items-center space-x-1">
+              <button type="button" onclick="handleReportQuestion(${idx + 1})" class="px-2 py-0.5 bg-rose-950 border border-rose-700 text-[10px] font-bold text-rose-300 rounded hover:bg-rose-900 transition flex items-center space-x-1">
                 <span>Report 🚩</span>
               </button>
             </div>
           </div>
           <p class="text-sm font-medium text-slate-200 whitespace-pre-line">${q.q}</p>
           ${optsHtml}
-          <div class="bg-slate-800/90 p-3 rounded-lg border border-slate-700 mt-2 text-xs leading-relaxed">
-            <span class="font-bold text-amber-400">വിശദീകരണം:</span>
+          <div class="bg-slate-800 p-2.5 rounded-lg border border-slate-700 mt-2 text-xs leading-relaxed">
+            <span class="font-bold text-cyan-400">വിശദീകരണം:</span>
             <span class="text-slate-300 ml-1">${q.exp}</span>
           </div>
         `;
@@ -1029,28 +1133,61 @@
         return;
       }
 
-      fetch(`${GOOGLE_SHEET_WEBAPP_URL}?sheet=${encodeURIComponent(QUIZ_SHEET_NAME)}`)
+      fetch(`${GOOGLE_SHEET_WEBAPP_URL}?sheet=${encodeURIComponent(QUIZ_SHEET_NAME)}&_t=${Date.now()}`)
         .then(res => res.json())
         .then(data => {
           loader.classList.add('hidden');
           wrapper.classList.remove('hidden');
 
-          if (!data || data.length === 0) {
+          const rawList = Array.isArray(data) ? data : (data.leaderboard || []);
+
+          if (!rawList || rawList.length === 0) {
             tbody.innerHTML = '<tr><td colspan="4" class="py-6 text-center text-slate-500">ഇതുവരെ ആരും പരീക്ഷ പൂർത്തിയാക്കിയിട്ടില്ല.</td></tr>';
             return;
           }
 
-          data.sort((a, b) => b.score - a.score || b.correct - a.correct);
+          const seenPhones = new Set();
+          const uniqueLeaderboard = [];
 
-          data.forEach((entry, idx) => {
-            const masked = entry.phone ? String(entry.phone).substring(0, 5) + '*****' : '---';
+          rawList.forEach((entry, index) => {
+            let cleanPhone = String(entry.phone || '').replace(/[^0-9]/g, '');
+            if (cleanPhone.length >= 10) {
+              cleanPhone = cleanPhone.slice(-10);
+            }
+
+            if (cleanPhone && cleanPhone !== "0000000000") {
+              if (!seenPhones.has(cleanPhone)) {
+                seenPhones.add(cleanPhone);
+                entry.originalIndex = index;
+                uniqueLeaderboard.push(entry);
+              }
+            } else {
+              entry.originalIndex = index;
+              uniqueLeaderboard.push(entry);
+            }
+          });
+
+          uniqueLeaderboard.sort((a, b) => {
+            const scoreDiff = parseFloat(b.score) - parseFloat(a.score);
+            if (scoreDiff !== 0) return scoreDiff;
+            return a.originalIndex - b.originalIndex;
+          });
+
+          uniqueLeaderboard.forEach((entry, idx) => {
+            let phoneStr = String(entry.phone || '').replace(/[^0-9]/g, '');
+            if (phoneStr.length >= 10) phoneStr = phoneStr.slice(-10);
+            
+            const masked = (phoneStr && phoneStr.length >= 5) 
+              ? phoneStr.substring(0, 5) + '*****' 
+              : '---';
+
             const row = document.createElement('tr');
             row.className = 'hover:bg-slate-700/30 text-slate-300';
             row.innerHTML = `
               <td class="py-2.5 px-3 font-mono font-bold">${idx + 1}</td>
               <td class="py-2.5 px-3 font-medium">${entry.name}</td>
               <td class="py-2.5 px-3 font-mono text-xs text-slate-400">${masked}</td>
-              <td class="py-2.5 px-3 text-right font-mono font-bold text-amber-400">${Number(entry.score).toFixed(2)}</td>
+              <td class="py-2.5 px-3 text-right font-mono font-bold text-cyan-400">${Number(entry.score).toFixed(2)}</td>
             `;
             tbody.appendChild(row);
           });
@@ -1060,49 +1197,19 @@
         });
     }
 
-    document.getElementById('loginForm').onsubmit = (e) => {
-      e.preventDefault();
-      const name = document.getElementById('candName').value.trim();
-      const phone = document.getElementById('candPhone').value.trim();
-
-      if (!name || phone.length !== 10) {
-        alert('ദയവായി ശരിയായ പേരും 10 അക്ക മൊബൈൽ നമ്പറും നൽകുക.');
-        return;
-      }
-
-      currentUser = { name, phone };
-      document.getElementById('displayUser').innerText = `${name} (+91 ${phone})`;
-      document.getElementById('userInfoHeader').classList.remove('hidden');
-
-      triggerMotivationAndStart();
-    };
-
-    document.getElementById('viewRankBtn').onclick = fetchLiveLeaderboard;
-    document.getElementById('showLeaderboardBtn').onclick = fetchLiveLeaderboard;
-    document.getElementById('closeLeaderboardBtn').onclick = () => {
+    function closeLeaderboard() {
       document.getElementById('leaderboardModal').classList.add('hidden');
-    };
-    document.getElementById('closeLeaderboardBtn2').onclick = () => {
-      document.getElementById('leaderboardModal').classList.add('hidden');
-    };
-    // ഹോം പേജിൽ നിന്ന് വരുന്ന പേരും നമ്പറും സ്വയം തിരിച്ചറിഞ്ഞ് ലോഗിൻ ഒഴിവാക്കാൻ:
-    window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const passedName = urlParams.get('name');
-      const passedPhone = urlParams.get('phone');
+    }
 
-      if (passedName && passedPhone) {
-        currentUser = { 
-          name: decodeURIComponent(passedName), 
-          phone: decodeURIComponent(passedPhone) 
-        };
-        document.getElementById('displayUser').innerText = `${currentUser.name} (+91 ${currentUser.phone})`;
-        document.getElementById('userInfoHeader').classList.remove('hidden');
+    function returnToHomeWithData() {
+      const homePortalUrl = "https://subhash-kumar00.github.io/PSC-EXAMS/";
+      const score = document.getElementById('finalScore').innerText;
+      const correct = document.getElementById('correctCount').innerText;
+      const wrong = document.getElementById('wrongCount').innerText;
+      const skipped = document.getElementById('skipCount').innerText;
 
-        // ലോഗിൻ സ്ക്രീൻ ഒഴിവാക്കി നേരിട്ട് പരീക്ഷ തുടങ്ങുന്നു
-        triggerMotivationAndStart();
-      }
-    });
+      window.location.href = `${homePortalUrl}?completed=true&title=${encodeURIComponent(examTitle)}&score=${score}&correct=${correct}&wrong=${wrong}&skipped=${skipped}`;
+    }
   </script>
 </body>
 </html>
